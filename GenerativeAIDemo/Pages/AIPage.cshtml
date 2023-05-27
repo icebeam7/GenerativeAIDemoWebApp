@@ -1,0 +1,39 @@
+﻿@page
+@model GenerativeAIDemo.Pages.AIPageModel
+@{
+    ViewData["Title"] = "Generative AI";
+}
+
+<h1>Azure Open AI</h1>
+<hr/>
+<br/>
+
+<form method="post">
+    <div>
+        <label for="prompt">Enter your prompt</label>
+        <input id="prompt" type="text" name="prompt" value="@Model.Prompt" size="100"/>
+    </div>
+    <div style="margin-top: 1em">
+        <button type="submit" asp-page-handler="AskQuestion">Ask a question</button>
+        <button type="submit" asp-page-handler="CreateImage">Create an image</button>
+    </div>
+</form>
+
+<br />
+<br />
+
+@if (!string.IsNullOrEmpty(Model.Result))
+{
+    <div>
+        <h3>Result</h3>
+
+        @if (Model.IsText)
+        {
+            <p style="color: blue">@Model.Result</p>
+        }
+        else
+        {
+            <img src="@Model.Result" width="512" height="512"/>
+        }
+    </div>
+}
