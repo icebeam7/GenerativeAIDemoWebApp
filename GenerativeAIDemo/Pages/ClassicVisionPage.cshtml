@@ -1,0 +1,32 @@
+﻿@page
+@model GenerativeAIDemo.Pages.ClassicVisionPageModel
+@{
+    ViewData["Title"] = "Classic Computer Vision AI";
+}
+
+<h1>Classic Computer Vision</h1>
+<hr />
+<br />
+
+<form method="post">
+    <div>
+        <label for="prompt">Enter the image url</label>
+        <input id="prompt" type="text" name="prompt" value="@Model.Prompt" size="100" />
+    </div>
+    <div style="margin-top: 1em">
+        <button type="submit" asp-page-handler="AnalyzeImage">Analyze an image</button>
+    </div>
+</form>
+
+<br />
+<br />
+
+@if (!string.IsNullOrEmpty(Model.Result))
+{
+    <div>
+        <h3>Result</h3>
+
+        <img src="@Model.Prompt" width="512" height="512" />
+        <span style="white-space: pre-line; color: blue">@Model.Result</span>
+    </div>
+}
